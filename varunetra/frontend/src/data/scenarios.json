@@ -1,0 +1,128 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_1",
+      "name": "Arabian Sea — Aug 2026",
+      "location": {
+        "lat": 19.05,
+        "lon": 68.9
+      },
+      "sar_image_url": "/assets/scenario_1/sar.png",
+      "mask_image_url": "/assets/scenario_1/mask.png",
+      "detection": {
+        "area_km2": 12.4,
+        "fragmentation": 4,
+        "elongation": 2.1
+      },
+      "age_estimate": {
+        "predicted_hours": 43,
+        "uncertainty_hours": 5,
+        "window_start_hours": 38,
+        "window_end_hours": 48
+      },
+      "backtrack": {
+        "origin_center": {
+          "lat": 18.7,
+          "lon": 68.3
+        },
+        "heatmap_points": [
+          {
+            "lat": 18.7,
+            "lon": 68.3,
+            "intensity": 1
+          },
+          {
+            "lat": 18.75,
+            "lon": 68.35,
+            "intensity": 0.6
+          }
+        ],
+        "particle_path": [
+          {
+            "lat": 19.05,
+            "lon": 68.9,
+            "t": 0
+          },
+          {
+            "lat": 18.9,
+            "lon": 68.6,
+            "t": 20
+          },
+          {
+            "lat": 18.7,
+            "lon": 68.3,
+            "t": 43
+          }
+        ]
+      },
+      "ais_vessels": [
+        {
+          "name": "MV Example One",
+          "type": "tanker",
+          "rank": 1,
+          "confidence": 0.78,
+          "position": {
+            "lat": 18.71,
+            "lon": 68.31
+          },
+          "track": [
+            {
+              "lat": 18.6,
+              "lon": 68.1,
+              "t": 0
+            },
+            {
+              "lat": 18.71,
+              "lon": 68.31,
+              "t": 43
+            }
+          ]
+        },
+        {
+          "name": "MV Example Two",
+          "type": "cargo",
+          "rank": 2,
+          "confidence": 0.14,
+          "position": {
+            "lat": 18.85,
+            "lon": 68.5
+          },
+          "track": [
+            {
+              "lat": 18.9,
+              "lon": 68.6,
+              "t": 0
+            },
+            {
+              "lat": 18.85,
+              "lon": 68.5,
+              "t": 43
+            }
+          ]
+        },
+        {
+          "name": "MV Coastal Meridian",
+          "type": "tanker",
+          "rank": 3,
+          "confidence": 0.08,
+          "position": {
+            "lat": 18.78,
+            "lon": 68.44
+          },
+          "track": [
+            {
+              "lat": 18.65,
+              "lon": 68.2,
+              "t": 0
+            },
+            {
+              "lat": 18.78,
+              "lon": 68.44,
+              "t": 43
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

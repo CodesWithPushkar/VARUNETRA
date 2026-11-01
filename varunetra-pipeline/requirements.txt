@@ -1,0 +1,14 @@
+psycopg2-binary
+python-dotenv
+geopandas
+numpy
+pandas
+requests
+pyproj
+shapely>=2
+rasterio
+scipy
+global-land-mask
+matplotlib
+torch
+segmentation-models-pytorch

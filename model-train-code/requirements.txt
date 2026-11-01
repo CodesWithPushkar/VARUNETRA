@@ -1,0 +1,8 @@
+h5py
+tifffile
+imagecodecs
+segmentation-models-pytorch
+albumentations
+onnx
+onnxruntime
+numpy

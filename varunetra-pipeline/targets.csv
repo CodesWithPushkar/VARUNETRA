@@ -1,0 +1,3 @@
+location_name,min_lon,min_lat,max_lon,max_lat,start_date,end_date
+strait_of_hormuz,55.0,26.0,57.0,27.5,2024-09-01,2024-09-07
+mumbai_high,71.0,19.0,72.5,20.0,2024-09-01,2024-09-07

@@ -1,0 +1,16 @@
+# Stages 6-9 (backtrack and vessel ranking). Use a separate venv on Python 3.10-3.13.
+parcels>=3.1.4,<4.0.0
+zarr>=2.18,<3
+numpy>=1.21
+scipy>=1.9
+pandas>=1.5
+xarray>=2022.12,<2025.1
+netCDF4>=1.6
+shapely>=2.0
+pyproj>=3.4
+copernicusmarine>=0.14.0
+cdsapi>=0.7.0
+psycopg2-binary
+python-dotenv
+matplotlib>=3.5
+requests>=2.28

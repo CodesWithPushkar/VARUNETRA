@@ -1,0 +1,12 @@
+parcels==2.4.2
+numpy==1.26.4
+pandas==2.2.3
+xarray==2024.10.0
+geopandas==1.0.1
+shapely==2.0.6
+pyogrio==0.10.0
+pyproj==3.7.0
+netCDF4==1.7.2
+SQLAlchemy==2.0.36
+psycopg2-binary==2.9.10
+matplotlib==3.9.2

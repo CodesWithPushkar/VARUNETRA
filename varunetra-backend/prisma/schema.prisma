@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Spill {
+  spillId              String   @id @map("spill_id") @db.Text
+  kind                 String   @db.Text
+  imageTimeUtc         String   @map("image_time_utc") @db.Text
+  sceneName            String?  @map("scene_name") @db.Text
+  polygonGeojson       String   @map("polygon_geojson") @db.Text
+  centroidLat          Float?   @map("centroid_lat") @db.Real
+  centroidLon          Float?   @map("centroid_lon") @db.Real
+  areaKm2              Float?   @map("area_km2") @db.Real
+  detectionConfidence  Float?   @map("detection_confidence") @db.Real
+  modelVersion         String?  @map("model_version") @db.Text
+  ageHours             Float?   @map("age_hours") @db.Real
+  ageSigmaHours        Float?   @map("age_sigma_hours") @db.Real
+  originLat            Float    @map("origin_lat") @db.Real
+  originLon            Float    @map("origin_lon") @db.Real
+  originRadiusKm       Float    @map("origin_radius_km") @db.Real
+  originSource         String?  @map("origin_source") @db.Text
+  originHeatmapPath    String?  @map("origin_heatmap_path") @db.Text
+  windowStartUtc       String   @map("window_start_utc") @db.Text
+  windowEndUtc         String   @map("window_end_utc") @db.Text
+  windowSource         String?  @map("window_source") @db.Text
+  dataSource           String?  @map("data_source") @db.Text
+  notes                String?  @db.Text
+  createdUtc           String   @map("created_utc") @db.Text
+
+  @@map("spills")
+}
+
+model ReportedCulprit {
+  id          Int     @id @default(autoincrement())
+  spillId     String  @map("spill_id") @db.Text
+  mmsi        Int?    @db.Integer
+  vesselName  String? @map("vessel_name") @db.Text
+  imo         String? @db.Text
+  sourceTitle String? @map("source_title") @db.Text
+  sourceUrl   String? @map("source_url") @db.Text
+  reportDate  String? @map("report_date") @db.Text
+  notes       String? @db.Text
+
+  @@map("reported_culprits")
+}

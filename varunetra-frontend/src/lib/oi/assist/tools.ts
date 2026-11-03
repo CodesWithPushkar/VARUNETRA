@@ -436,7 +436,7 @@ export async function runCall(call: Call, site: Site, signal?: AbortSignal): Pro
       if (question.length < 8) return fail('forecast', 'A forecast needs a question of a few words');
       const depth: Depth = a.depth === 'quick' || a.depth === 'deep' ? a.depth : 'standard';
       const started = await site.forecast(question, depth);
-      if (!started.ok) return fail('forecast', started.error);
+      if (started.ok === false) return fail('forecast', started.error);
       return ok('forecast', `Started a ${depth} forecast (run ${started.id.slice(0, 8)})`, undefined, { kind: 'forecast', title: question, items: [], runId: started.id });
     }
 
@@ -446,7 +446,7 @@ export async function runCall(call: Call, site: Site, signal?: AbortSignal): Pro
       const open = a.open === false || a.open === 'false' ? false : a.open === true || a.open === 'true' || view ? true : undefined;
       if (open === undefined && !view) return fail('workspace', 'Say open (true or false) or a view');
       const out = site.workspace({ open, view });
-      return out.ok ? ok('workspace', out.summary) : fail('workspace', out.error);
+      return out.ok === true ? ok('workspace', out.summary) : fail('workspace', out.error);
     }
 
     case 'select': {
@@ -454,7 +454,7 @@ export async function runCall(call: Call, site: Site, signal?: AbortSignal): Pro
       const name = str(a.name, 120);
       if (!name) return fail('select', 'Give the name of the object to open');
       const out = site.select(name);
-      return out.ok ? ok('select', out.summary) : fail('select', out.error);
+      return out.ok === true ? ok('select', out.summary) : fail('select', out.error);
     }
 
     case 'clear':

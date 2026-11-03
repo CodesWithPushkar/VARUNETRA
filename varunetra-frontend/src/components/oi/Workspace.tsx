@@ -210,7 +210,7 @@ export function Workspace(p: WorkspaceProps) {
             </div>
             {p.errorBox}
             <div className="px-3 pt-3 flex-shrink-0">
-              <Segmented id="left" size="sm" value={left} onChange={setLeftTab} options={[
+              <Segmented id="left" size="sm" value={left} onChange={value => setLeftTab(value as 'assessment' | 'trace')} options={[
                 { value: 'assessment', label: s.report ? 'Report' : 'Sources' },
                 { value: 'trace', label: 'Trace' },
               ]} />

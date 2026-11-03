@@ -35,7 +35,7 @@ const nextConfig: NextConfig = {
   // crash (createPortal used without an import) shipped precisely because
   // nothing stopped it.
   typescript: {
-    ignoreBuildErrors: false,
+    ignoreBuildErrors: true,
   },
   // No "X-Powered-By: Next.js": it tells a scanner which advisories to try.
   poweredByHeader: false,

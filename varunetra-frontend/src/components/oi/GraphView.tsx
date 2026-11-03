@@ -378,7 +378,7 @@ export function GraphView({ s, selected, onSelect }: { s: RunState; selected: st
               ))}
             </FilterGroup>
             <FilterGroup label="Layout">
-              <Segmented id="graph-layout" size="sm" value={mode} onChange={setMode} options={[
+              <Segmented id="graph-layout" size="sm" value={mode} onChange={value => setMode(value as LayoutMode)} options={[
                 { value: 'force', label: 'Force', title: 'Let the network find its own shape' },
                 { value: 'flow', label: 'Flow', title: 'Sources, then the actors, then the prediction, left to right' },
               ]} />

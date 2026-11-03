@@ -374,7 +374,7 @@ export function AskForm({ ready, providerName, onRun, onKey }: { ready: boolean;
               {d.actors} actors · {d.periods} periods · {d.worlds} worlds · ~{estimateCalls(depth, useFeeds)} calls
             </span>
           </div>
-          <Segmented id="depth" value={depth} onChange={setDepth} options={(Object.keys(DEPTHS) as Depth[]).map(k => ({ value: k, label: DEPTHS[k].label }))} />
+          <Segmented id="depth" value={depth} onChange={value => setDepth(value as Depth)} options={(Object.keys(DEPTHS) as Depth[]).map(k => ({ value: k, label: DEPTHS[k].label }))} />
         </div>
 
         <label className="px-3 py-2.5 flex items-center gap-3 cursor-pointer">

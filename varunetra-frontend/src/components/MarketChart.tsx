@@ -113,7 +113,7 @@ export default function MarketChart({ symbol, name, onClose, large = false }: Ma
     chart.priceScale('vol').applyOptions({ scaleMargins: { top: 0.8, bottom: 0 } });
 
     chart.subscribeCrosshairMove((param) => {
-      const d = param.seriesData.get(candleSeries) as Candle | undefined;
+      const d = param.seriesData.get(candleSeries) as unknown as Candle | undefined;
       setHover(d && param.time ? { ...d, time: param.time as number, volume: d.volume ?? 0 } : null);
     });
 

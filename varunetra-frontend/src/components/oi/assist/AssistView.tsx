@@ -334,7 +334,7 @@ export function AssistView(p: AssistViewProps) {
       </div>
 
       <div className="sticky bottom-0 px-3 pt-2.5 pb-3 border-t flex flex-col gap-2" style={{ background: 'var(--oi-solid)', borderColor: blue(0.12) }}>
-        <Segmented id="assist-mode" size="sm" accent="blue" value={mode} onChange={setMode} options={MODES} />
+        <Segmented id="assist-mode" size="sm" accent="blue" value={mode} onChange={value => setMode(value as Mode)} options={MODES} />
         {p.ready ? (
           <div className="flex items-end gap-1.5 rounded-2xl border border-[var(--border-primary)] bg-black/50 focus-within:border-[rgba(var(--cyan-rgb),0.5)] focus-within:shadow-[0_0_0_3px_rgba(var(--cyan-rgb),0.08)] transition-[border-color,box-shadow] pl-3.5 pr-1.5 py-1.5">
             <textarea ref={input} value={dictation.listening ? dictation.heard : text} rows={1}

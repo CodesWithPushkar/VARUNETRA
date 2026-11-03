@@ -27,7 +27,7 @@ describe('the run store', () => {
 
   it('runs to the end and summarises without the key or the address', async () => {
     const started = startRun(input(), { chat: createDemoChat() });
-    if (!started.ok) throw new Error(started.error);
+    if (started.ok === false) throw new Error(started.error);
     const { run } = started;
     expect(getRun(run.id)).toBe(run);
     await waitForEnd(run, 10_000);
@@ -43,7 +43,7 @@ describe('the run store', () => {
 
   it('replays a run to a late subscriber, in order', async () => {
     const started = startRun(input(), { chat: createDemoChat() });
-    if (!started.ok) throw new Error(started.error);
+    if (started.ok === false) throw new Error(started.error);
     await waitForEnd(started.run, 10_000);
     const seen: Stamped[] = [];
     subscribe(started.run, 4, e => seen.push(e));
@@ -64,7 +64,7 @@ describe('the run store', () => {
 
   it('only lets the starter change a run', () => {
     const started = startRun(input(), { chat: slow(50) });
-    if (!started.ok) throw new Error(started.error);
+    if (started.ok === false) throw new Error(started.error);
     const { run } = started;
     expect(ownsRun(run, run.token)).toBe(true);
     expect(ownsRun(run, 'nope')).toBe(false);
@@ -75,7 +75,7 @@ describe('the run store', () => {
 
   it('queues injected events, within reason', () => {
     const started = startRun(input(), { chat: slow(100) });
-    if (!started.ok) throw new Error(started.error);
+    if (started.ok === false) throw new Error(started.error);
     const { run } = started;
     expect(injectEvent(run, 'x')).toMatchObject({ ok: false, status: 400 });
     for (let i = 0; i < LIMITS.maxInjects; i++) expect(injectEvent(run, `Event number ${i}`)).toEqual({ ok: true });
@@ -85,7 +85,7 @@ describe('the run store', () => {
 
   it('cancels', async () => {
     const started = startRun(input(), { chat: slow(30) });
-    if (!started.ok) throw new Error(started.error);
+    if (started.ok === false) throw new Error(started.error);
     const { run } = started;
     expect(cancelRun(run)).toBe(true);
     await waitForEnd(run, 5_000);
@@ -97,7 +97,7 @@ describe('the run store', () => {
   it('reports a failure without the key', async () => {
     const key = 'sk-secret-abcdefghijklmnop';
     const started = startRun(input({ key }), { chat: async () => { throw new Error(`upstream said ${key} is bad`); } });
-    if (!started.ok) throw new Error(started.error);
+    if (started.ok === false) throw new Error(started.error);
     await waitForEnd(started.run, 5_000);
     expect(started.run.state.status).toBe('failed');
     expect(started.run.state.message).not.toContain(key);

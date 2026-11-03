@@ -262,7 +262,7 @@ export async function callTool(name: string, args: Record<string, unknown>, ctx:
         { question: args.question, seed: args.context, seed_scope: args.context_scope, depth: args.depth, use_feeds: args.use_live_feeds },
         ctx.creds, ctx.ip, ctx.deps,
       );
-      if (!started.ok) return toolError(started.error);
+      if (started.ok === false) return toolError(started.error);
       const { run } = started;
       // Said first, so a client that drops mid-wait still knows where its run is.
       ctx.progress?.(0, 5 + run.state.periodsPlanned, `Run ${run.id} started. Watch it: ${watchUrl(ctx.origin, run.id)}`);
@@ -284,7 +284,7 @@ export async function callTool(name: string, args: Record<string, unknown>, ctx:
       const run = getRun(String(args.run_id ?? ''));
       if (!run) return toolError('No such run.');
       const asked = await askPrediction(run, args.target, args.message, ctx.creds, ctx.signal, ctx.deps?.chat);
-      if (!asked.ok) return toolError(asked.error);
+      if (asked.ok === false) return toolError(asked.error);
       return ok(asked.reply, { run_id: run.id, target: asked.target, reply: asked.reply });
     }
     case 'oi_inject': {
@@ -292,7 +292,7 @@ export async function callTool(name: string, args: Record<string, unknown>, ctx:
       if (!run) return toolError('No such run.');
       if (!ownsRun(run, args.run_token)) return toolError('That run_token does not match this run.');
       const done = injectEvent(run, args.event);
-      if (!done.ok) return toolError(done.error);
+      if (done.ok === false) return toolError(done.error);
       return ok('Queued: it lands in every world at the start of the next period.', { run_id: run.id, queued: true });
     }
     case 'oi_cancel': {
